@@ -1,0 +1,88 @@
+.login-div {
+  display: flex;
+  height: 100vh;
+  width: 100%;
+}
+.login-left {
+  flex: 1;
+  min-height: 100vh;
+  background-image: url("/public/images/login-bg.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 90% auto;
+}
+
+
+
+.login-right {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #e9ebf1;
+  border: #4338ca;
+}
+
+.heading {
+  font-size: 2.5rem;
+  color: #1e1b4b; 
+  margin-bottom: 25px;
+  font-weight: 700;
+}
+
+form {
+  background: #ffffff;
+  padding: 40px;
+  border-radius: 12px;
+  width: 100%;
+  max-width: 400px;
+ 
+  border: 1px solid #4793f6;
+}
+
+form div {
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+label {
+  color: #475569; 
+  margin-bottom: 8px;
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+input {
+  background: #f8fafc;
+  border: 1px solid #cbd5e1;
+  padding: 12px;
+  border-radius: 6px;
+  color: #1e293b;
+  font-size: 1rem;
+}
+
+input:focus {
+  outline: none;
+  border-color: #6366f1;
+}
+
+button[type="submit"] {
+  background-color: #4f46e5;
+  color: white;
+  border: none;
+  padding: 12px;
+  border-radius: 6px;
+  font-weight: bold;
+  font-size: 1rem;
+  cursor: pointer;
+  width: 100%;
+  margin-top: 10px;
+  
+}
+
+button[type="submit"]:hover {
+  background-color: #4338ca;
+}
+
