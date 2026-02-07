@@ -1,9 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { useAuth } from "./auth";
 import "./dashboard.css";
 
 const API = process.env.REACT_APP_BACKEND_BASEURL;
+
 const EditPost = () => {
   const { postId } = useParams();
   const navigate = useNavigate();
@@ -31,40 +32,38 @@ const EditPost = () => {
     tips: "",
 
     selectionRounds: [{ roundType: "", roundMode: "", description: "" }],
-
     resources: [""],
   });
 
+  const fetchPost = useCallback(async () => {
+    try {
+      const res = await fetch(`${API}/api/auth/myposts/${postId}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      if (!res.ok) throw new Error("Failed to fetch post");
+
+      const data = await res.json();
+
+      setForm((prev) => ({
+        ...prev,
+        ...data,
+        selectionRounds:
+          data.selectionRounds?.length > 0
+            ? data.selectionRounds
+            : prev.selectionRounds,
+        resources: data.resources?.length > 0 ? data.resources : prev.resources,
+      }));
+    } catch (error) {
+      alert("Error loading post");
+    }
+  }, [API, postId, token]);
+
   useEffect(() => {
-    const fetchPost = async () => {
-      try {
-        const res = await fetch(`${API}/api/auth/myposts/${postId}`, {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        });
-
-        if (!res.ok) throw new Error("Failed to fetch post");
-
-        const data = await res.json();
-
-        setForm({
-          ...form,
-          ...data,
-          selectionRounds:
-            data.selectionRounds?.length > 0
-              ? data.selectionRounds
-              : form.selectionRounds,
-          resources:
-            data.resources?.length > 0 ? data.resources : form.resources,
-        });
-      } catch (error) {
-        alert("Error loading post");
-      }
-    };
-
     fetchPost();
-  }, [postId, token]);
+  }, [fetchPost]);
 
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
@@ -138,6 +137,7 @@ const EditPost = () => {
 
       <form className="dashboard-form" onSubmit={handleSubmit}>
         <h3>Candidate Information</h3>
+
         <input
           name="fullName"
           placeholder="Full Name"
@@ -172,6 +172,7 @@ const EditPost = () => {
         />
 
         <h3>Company & Role</h3>
+
         <input
           name="company_name"
           placeholder="Company Name"
@@ -193,7 +194,8 @@ const EditPost = () => {
           onChange={handleChange}
         />
 
-        <h3>Interview Details (Old)</h3>
+        <h3>Interview Details</h3>
+
         <input
           name="interviewMode"
           placeholder="Interview Mode"
@@ -206,6 +208,7 @@ const EditPost = () => {
           value={form.difficulty}
           onChange={handleChange}
         />
+
         <textarea
           name="topicsAsked"
           placeholder="Topics Asked"
@@ -214,7 +217,7 @@ const EditPost = () => {
         />
         <textarea
           name="selectionProcedure"
-          placeholder="Selection Procedure (Old)"
+          placeholder="Selection Procedure"
           value={form.selectionProcedure}
           onChange={handleChange}
         />
@@ -243,7 +246,8 @@ const EditPost = () => {
           onChange={handleChange}
         />
 
-        <h3>Structured Selection Rounds</h3>
+        <h3>Selection Rounds</h3>
+
         {form.selectionRounds.map((round, index) => (
           <div key={index} className="dashboard-box">
             <input
@@ -278,11 +282,13 @@ const EditPost = () => {
             )}
           </div>
         ))}
+
         <button type="button" onClick={addRound}>
           + Add Round
         </button>
 
         <h3>Resources</h3>
+
         {form.resources.map((r, index) => (
           <div key={index}>
             <input
@@ -297,11 +303,13 @@ const EditPost = () => {
             )}
           </div>
         ))}
+
         <button type="button" onClick={addResource}>
           + Add Resource
         </button>
 
         <h3>Advice</h3>
+
         <textarea
           name="advice"
           placeholder="Advice for candidates"
