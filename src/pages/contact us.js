@@ -20,7 +20,7 @@ const Contact = () => {
     e.preventDefault();
 
     try {
-      const res = await fetch(`${API}/auth/contactresponse`, {
+      const res = await fetch(`${API}/api/auth/contactresponse`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

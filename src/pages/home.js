@@ -13,7 +13,7 @@ const Home = () => {
   useEffect(() => {
     const fetchPublicPosts = async () => {
       try {
-        const res = await fetch(`${API}/auth/public_posts`);
+        const res = await fetch(`${API}/api/auth/public_posts`);
         const data = await res.json();
         setPosts(data);
       } catch (error) {

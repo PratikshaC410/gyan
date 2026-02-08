@@ -61,7 +61,7 @@ const Dashboard = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    await fetch(`${API}/auth/create_posts`, {
+    await fetch(`${API}/api/auth/create_posts`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

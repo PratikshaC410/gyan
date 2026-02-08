@@ -113,7 +113,7 @@ const EditPost = () => {
     e.preventDefault();
 
     try {
-      const res = await fetch(`${API}/auth/myposts/${postId}`, {
+      const res = await fetch(`${API}/api/auth/myposts/${postId}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
