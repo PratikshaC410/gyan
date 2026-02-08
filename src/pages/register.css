@@ -1,0 +1,131 @@
+.register-div {
+  display: flex;
+  height: 100vh;
+  width: 100%;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+
+.register-left {
+  flex: 1;
+  background-image: url("/public/images/login-bg.png"); 
+   background-repeat: no-repeat;
+  background-position: center;
+  background-size: 90% auto;
+}
+
+.register-right {
+  flex: 1;
+  background-color: #f0f4ff;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.heading {
+  font-size: 2.5rem;
+  color: #1e1b4b;
+  margin-bottom: 25px;
+  font-weight: 700;
+}
+
+
+.register-right form {
+  background: #ffffff;
+  padding: 40px;
+  border-radius: 12px;
+  width: 100%;
+  max-width: 400px;
+  border: 1px solid #e2e8f0;
+ 
+}
+
+
+.register-right form div {
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.register-right label {
+  color: #475569;
+  margin-bottom: 8px;
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+
+.register-right input {
+  background: #f8fafc;
+  border: 1px solid #cbd5e1;
+  padding: 12px;
+  border-radius: 6px;
+  color: #1e293b;
+  font-size: 1rem;
+ 
+}
+
+.register-right input:focus {
+  outline: none;
+  border-color: #6366f1;
+  
+}
+
+.register-right button {
+  background-color: #4f46e5;
+  color: white;
+  border: none;
+  padding: 12px;
+  border-radius: 6px;
+  font-weight: bold;
+  font-size: 1rem;
+  cursor: pointer;
+  width: 100%;
+  margin-top: 10px;
+  
+}
+
+.register-right button:hover {
+  background-color: #4338ca;
+}
+
+.otp {
+  margin-top: 20px;
+  background: #ffffff;
+  padding: 20px;
+  border-radius: 10px;
+  width: 100%;
+  max-width: 350px;
+  border: 1px solid #e2e8f0;
+ 
+}
+
+.otp h2 {
+  margin-bottom: 10px;
+  color: #1e1b4b;
+}
+
+.otp p {
+  margin-bottom: 10px;
+  color: #475569;
+}
+
+.otp input {
+  margin-bottom: 10px;
+}
+
+.otp button {
+  width: 100%;
+  padding: 10px;
+  margin-top: 8px;
+  background: #1e3a8a;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.otp button:hover {
+  background: #1d4ed8;
+}

@@ -1,0 +1,135 @@
+.dashboard-div {
+  min-height: calc(100vh - 70px);
+  background: linear-gradient(135deg, #f4f6fb, #eef2ff);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 40px 20px;
+}
+
+.dashboard-div h1 {
+  font-size: 42px;
+  margin-bottom: 25px;
+  color: #2563eb;
+  text-align: center;
+}
+
+
+.dashboard-form {
+  background: #ffffff;
+  width: 100%;
+  max-width: 720px;
+  padding: 36px;
+  border-radius: 18px;
+  box-shadow: 0 12px 35px rgba(37, 99, 235, 0.15);
+  animation: fadeIn 0.4s ease-in-out;
+}
+
+
+.dashboard-form h2 {
+  font-size: 20px;
+  font-weight: 700;
+  color: #1e40af;
+  margin: 32px 0 16px;
+  padding-left: 10px;
+  border-left: 4px solid #2563eb;
+}
+
+
+.dashboard-form input,
+.dashboard-form textarea,
+.dashboard-form select {
+  width: 100%;
+  padding: 11px 12px;
+  border: 1px solid #d1d5db;
+  border-radius: 10px;
+  font-size: 14px;
+  outline: none;
+  background-color: #f9fafb;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  margin-bottom: 14px;
+}
+
+.dashboard-form textarea {
+  min-height: 90px;
+  resize: vertical;
+}
+
+.dashboard-form input:focus,
+.dashboard-form textarea:focus,
+.dashboard-form select:focus {
+  border-color: #2563eb;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+  background-color: #ffffff;
+}
+
+.dashboard-form select {
+  cursor: pointer;
+}
+
+
+.dashboard-form > div {
+  margin-bottom: 16px;
+}
+
+.dashboard-form button[type="button"] {
+  background: none;
+  border: none;
+  color: #2563eb;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  margin-bottom: 20px;
+}
+
+.dashboard-form button[type="button"]:hover {
+  text-decoration: underline;
+}
+
+.dashboard-btn,
+.dashboard-form button[type="submit"] {
+  width: 100%;
+  padding: 15px;
+  background: linear-gradient(135deg, #2563eb, #1d4ed8);
+  color: #ffffff;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 700;
+  margin-top: 24px;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.dashboard-btn:hover,
+.dashboard-form button[type="submit"]:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 15px rgba(37, 99, 235, 0.35);
+}
+
+.dashboard-btn:active,
+.dashboard-form button[type="submit"]:active {
+  transform: translateY(0);
+  box-shadow: none;
+}
+
+
+
+@media (max-width: 640px) {
+  .dashboard-form {
+    padding: 26px 22px;
+  }
+
+  .dashboard-form h2 {
+    font-size: 18px;
+  }
+}
+
+.dashboard-form {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.dashboard-div {
+  width: 100%;
+}
