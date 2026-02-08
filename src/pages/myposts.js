@@ -16,7 +16,7 @@ const Myposts = () => {
 
     const fetchMyPosts = async () => {
       try {
-        const res = await fetch(`${API}/auth/view_my_posts`, {
+        const res = await fetch(`${API}/api/auth/view_my_posts`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
