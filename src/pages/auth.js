@@ -28,7 +28,7 @@ export const AuthProvider = ({ children }) => {
 
   const userAuthentication = useCallback(async () => {
     try {
-      const res = await fetch(`${API}/api/auth/user`, {
+      const res = await fetch(`${API}/auth/user`, {
         method: "GET",
         headers: {
           Authorization: `Bearer ${token}`,
