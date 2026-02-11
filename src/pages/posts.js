@@ -9,7 +9,7 @@ const API = process.env.REACT_APP_BACKEND_BASEURL;
 const Posts = () => {
   const [posts, setPosts] = useState([]);
   const [selectedPost, setSelectedPost] = useState(null);
-  const [companySearch, setCompanySearch] = useState("");
+  const [companyFilter, setCompanyFilter] = useState("");
 
   const { token, isloggedin } = useAuth();
   const navigate = useNavigate();
@@ -69,7 +69,7 @@ const Posts = () => {
   };
 
   const filteredPosts = posts.filter((p) =>
-    p.company_name?.toLowerCase().includes(companySearch.toLowerCase()),
+    p.company_name?.toLowerCase().includes(companyFilter.toLowerCase()),
   );
 
   return (
@@ -80,9 +80,9 @@ const Posts = () => {
         <input
           type="text"
           placeholder="Search by company name..."
-          value={companySearch}
-          onChange={(e) => setCompanySearch(e.target.value)}
-          className="company-search"
+          value={companyFilter}
+          onChange={(e) => setCompanyFilter(e.target.value)}
+          className="company-filter"
         />
 
         {filteredPosts.length === 0 ? (
@@ -141,7 +141,6 @@ const Posts = () => {
         )}
       </div>
 
-      {/* 🔥 Modal Section */}
       {selectedPost && (
         <div className="modal-overlay" onClick={closeModal}>
           <div className="modal-box" onClick={(e) => e.stopPropagation()}>
