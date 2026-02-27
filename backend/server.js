@@ -9,12 +9,7 @@ const app = express();
 
 app.use(
   cors({
-    origin: [
-      "http://localhost:3000",
-      "http://localhost:3000",
-      "https://gyan-frontend1.vercel.app",
-      /https:\/\/gyan-frontend1-.*\.vercel\.app/,
-    ],
+    origin: ["https://gyan-frontend1.vercel.app"],
     methods: ["GET", "POST", "PUT", "DELETE"],
     credentials: true,
   }),
