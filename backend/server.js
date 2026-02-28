@@ -8,9 +8,20 @@ const authRoutes = require("./routes/authentication-route");
 const app = express();
 
 // CORS
+const allowedOrigins = [
+  "http://localhost:3000",
+  "https://gyan-frontend1.vercel.app",
+];
+
 app.use(
   cors({
-    origin: "https://gyan-frontend1.vercel.app",
+    origin: function (origin, callback) {
+      if (!origin || allowedOrigins.includes(origin)) {
+        callback(null, true);
+      } else {
+        callback(null, false);
+      }
+    },
     methods: ["GET", "POST", "PUT", "DELETE"],
     credentials: true,
   }),
