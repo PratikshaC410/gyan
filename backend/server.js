@@ -7,37 +7,14 @@ const authRoutes = require("./routes/authentication-route");
 
 const app = express();
 
-/* =========================
-   CORS CONFIG (FIXED)
-========================= */
-
-const allowedOrigins = [
-  "https://gyan-frontend1.vercel.app",
-  "http://localhost:3000", // optional (for local testing)
-];
-
+// CORS
 app.use(
   cors({
-    origin: function (origin, callback) {
-      // allow requests with no origin (like Postman)
-      if (!origin) return callback(null, true);
-
-      if (allowedOrigins.includes(origin)) {
-        return callback(null, true);
-      } else {
-        return callback(new Error("Not allowed by CORS"));
-      }
-    },
-    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
-    allowedHeaders: ["Content-Type", "Authorization"],
+    origin: "https://gyan-frontend1.vercel.app",
+    methods: ["GET", "POST", "PUT", "DELETE"],
     credentials: true,
   }),
 );
-
-// VERY IMPORTANT for preflight requests
-app.options("*", cors());
-
-/* ========================= */
 
 app.use(express.json());
 
@@ -47,12 +24,9 @@ app.get("/", (req, res) => {
   res.send("GYAN backend is running");
 });
 
-// MongoDB connection
+// Connect MongoDB
 if (!mongoose.connections[0].readyState) {
-  mongoose.connect(process.env.MONGO_URI, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  });
+  mongoose.connect(process.env.MONGO_URI);
 }
 
 module.exports = app;
