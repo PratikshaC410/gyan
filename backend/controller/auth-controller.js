@@ -24,30 +24,46 @@ function generateOTP() {
 
 const register = async (req, res) => {
   try {
+    console.log("Request body:", req.body);
+
     const { username, email, password } = req.body;
 
     // check if user already exists
     const existingUser = await userdb.findOne({ email });
-    if (existingUser) {
+    console.log("Existing user found:", existingUser);
+
+    // if user exists AND verified → block registration
+    if (existingUser && existingUser.isVerified) {
       return res.status(400).json({ msg: "User already exists" });
     }
-    //hashing of password
+
+    // hash password
     const saltRound = 10;
     const hash_password = await bcrypt.hash(password, saltRound);
 
-    // create user
-    await userdb.create({
-      username,
-      email,
-      password: hash_password,
-      isVerified: false,
-    });
+    // if user doesn't exist → create user
+    if (!existingUser) {
+      await userdb.create({
+        username,
+        email,
+        password: hash_password,
+        isVerified: false,
+      });
+    }
 
     // generate OTP
     const otp = generateOTP();
-    //hashing of otp
+
+    // hash OTP
     const saltround = 10;
     const hash_otp = await bcrypt.hash(otp, saltround);
+
+    // expire time (10 minutes)
+    const expire_time = new Date(Date.now() + 10 * 60 * 1000);
+
+    // delete old OTP if exists
+    await otpdb.deleteMany({ email });
+
     // save OTP
     await otpdb.create({
       username,
@@ -61,16 +77,16 @@ const register = async (req, res) => {
     // send OTP email
     await transporter.sendMail({
       from: '"Gyan-App" <chougulepratiksha23@gmail.com>',
-      to: `${email}`,
+      to: email,
       subject: "Email Verification OTP",
       html: `<p>Your verification code is <b>${otp}</b>. Please enter it to verify your email.</p>`,
     });
 
-    return res
-      .status(200)
-      .json({ msg: "Registered successfully. OTP sent to email." });
+    return res.status(200).json({
+      msg: "Registered successfully. OTP sent to email.",
+    });
   } catch (err) {
-    console.error(err);
+    console.error("REGISTER ERROR:", err);
     return res.status(500).json({ msg: "error" });
   }
 };
